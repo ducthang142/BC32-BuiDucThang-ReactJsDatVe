@@ -52,8 +52,9 @@
 
   background: orange;
   color: #000;
-
-  cursor: no-drop !important;
+  
+  pointer-events: none;
+  /* cursor: no-drop !important; */
   border-radius: 5px;
   width: 45px;
   height: 35px;
@@ -65,8 +66,7 @@
   background: rgb(109, 238, 109);
   border: 3px solid rgb(109, 238, 109);
   color: #000;
-
-  cursor: pointer;
+  pointer-events: none;
   border-radius: 5px;
   width: 45px;
   height: 35px;

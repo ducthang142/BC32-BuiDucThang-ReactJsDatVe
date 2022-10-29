@@ -207,7 +207,8 @@ const datveReducer = (state = initialState, action) => {
       })
 
       //Tạo ra 1 mảng seatSelected mới để thêm vào ghế người dùng đang chọn
-      const seatSelected = [...state.seatSelected, seat]
+      const seatSelected = [...state.seatSelected, seat];
+     
       
       return { ...state, seatSelected, seatList };
     }

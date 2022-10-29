@@ -7,7 +7,7 @@ const Seat = () => {
   const { seatSelected, seatList } = useSelector((state) => state.datve);
 
   const handleClick = (hang, soGhe) => {
-    console.log(hang, soGhe);
+    
     dispatch({ type: "dang_chon", hang, soGhe });
   };
 

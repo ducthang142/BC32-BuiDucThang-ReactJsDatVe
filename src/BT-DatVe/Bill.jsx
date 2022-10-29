@@ -2,8 +2,15 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 const Bill = () => {
+
+  const dispatch = useDispatch();
   //Lấy data từ store vào state
   const { seatSelected } = useSelector((state) => state.datve);
+
+  //Hàm handleRemove
+  const handleRemove = () => {
+    dispatch({type:"bo_chon"});
+  }
   return (
     <>
       <table className="table text-white">
@@ -16,11 +23,11 @@ const Bill = () => {
         </thead>
         <tbody>
           {seatSelected.map((item) => (
-            <tr>
+            <tr key={item.soGhe}>
               <td>{item.soGhe}</td>
               <td>{item.gia}</td>
               <td>
-                <button className="btn btn-danger">x</button>
+                <button className="btn btn-danger" onClick={()=>handleRemove()}>x</button>
               </td>
             </tr>
           ))}
