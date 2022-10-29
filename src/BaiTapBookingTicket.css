@@ -37,61 +37,41 @@
 }
 
 .ghe {
-  width: 37px;
-  height: 30px;
-  font-size: 12px;
-}
-
-.ghe:checked::before {
-  background-color: rgb(109, 238, 109);
-}
-
-.ghe::before {
-  content: "";
-  width: 37px;
-  height: 30px;
-  border-radius: 5px;
-  display: inline-block;
-  background: white;
   border: 3px solid orange;
+  width: 45px;
+  height: 35px;
+  font-size: 15px;
+  font-weight: 800;
+  /* margin-left: 2%;
+  margin-bottom: 1%; */
+  border-radius: 5px;
 }
 
 .gheDuocChon {
   border: 3px solid orange;
+
+  background: orange;
   color: #000;
+
   cursor: no-drop !important;
   border-radius: 5px;
-  width: 37px;
-  height: 30px;
-}
-
-.gheDuocChon::before {
-  content: "";
-  width: 37px;
-  height: 30px;
-  border-radius: 5px;
-  display: inline-block;
-  border: 3px solid orange;
-  background: orange;
+  width: 45px;
+  height: 35px;
+  font-size: 15px;
+  font-weight: 800;
 }
 
 .gheDangChon {
+  background: rgb(109, 238, 109);
   border: 3px solid rgb(109, 238, 109);
   color: #000;
+
   cursor: pointer;
   border-radius: 5px;
-  width: 37px;
-  height: 30px;
-}
-
-.gheDangChon::before {
-  content: "";
-  width: 37px;
-  height: 30px;
-  border-radius: 5px;
-  display: inline-block;
-  border: 3px solid orange;
-  background: rgb(109, 238, 109);
+  width: 45px;
+  height: 35px;
+  font-size: 15px;
+  font-weight: 800;
 }
 
 .background {

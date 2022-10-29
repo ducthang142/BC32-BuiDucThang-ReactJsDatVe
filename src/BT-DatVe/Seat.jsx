@@ -1,6 +1,16 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-const Seat = ({ data }) => {
+const Seat = () => {
+  const dispatch = useDispatch();
+  //Lấy data từ store vào state
+  const { seatSelected, seatList } = useSelector((state) => state.datve);
+
+  const handleClick = (hang, soGhe) => {
+    console.log(hang, soGhe);
+    dispatch({ type: "dang_chon", hang, soGhe });
+  };
+
   return (
     <>
       <table class="table">
@@ -22,12 +32,24 @@ const Seat = ({ data }) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item) => (
-            <tr key={item.id}>
+          {seatList.map((item) => (
+            <tr key={item.seatList}>
               <td className="firstChar">{item.hang}</td>
-              {item.danhSachGhe.map((seat) => (
+              {item.danhSachGhe.map((seat, index) => (
                 <td key={seat.id}>
-                  <input type="checkbox" className={seat.daDat?"gheDuocChon":"ghe"}  defaultValue={seat.soGhe} cursor />
+                  {/* Nếu daDat là true thì className sẽ là gheDuocChon, nếu dangChon là true thì className là gheDangChon, trường hợp còn lại className là ghe */}
+                  <button
+                    className={
+                      seat.daDat
+                        ? "gheDuocChon"
+                        : seat.dangChon
+                        ? "gheDangChon"
+                        : "ghe"
+                    }
+                    onClick={() => handleClick(item.hang, seat.soGhe)}
+                  >
+                    {index + 1}
+                  </button>
                 </td>
               ))}
             </tr>

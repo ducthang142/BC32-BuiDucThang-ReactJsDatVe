@@ -1,6 +1,5 @@
 import React from "react";
 import Seat from "./Seat";
-import data from "./danhSachGhe.json";
 import Bill from "./Bill";
 
 const DatVe = () => {
@@ -13,17 +12,17 @@ const DatVe = () => {
           <div>
             <h4 className="text-center text-white">Màn Hình</h4>
             <div className="screen"></div>
-            <Seat data={data} />
+            <Seat />
           </div>
           <div>
             <h2 className="text-center text-white">DANH SÁCH GHẾ BẠN CHỌN</h2>
-            <input type="checkbox" className="gheDuocChon" />
+            <button className="gheDuocChon"></button>
             <span className="text-white mx-2">Ghế đã đặt</span>
             <br />
-            <input type="checkbox" className="gheDangChon" />
+            <button className="gheDangChon"></button>
             <span className="text-white mx-2">Ghế đang đặt</span>
             <br />
-            <input type="checkbox" className="ghe" />
+            <button className="ghe"></button>
             <span className="text-white mx-2">Ghế chưa đặt</span>
             <Bill />
           </div>
