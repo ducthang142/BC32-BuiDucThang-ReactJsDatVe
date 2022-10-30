@@ -177,23 +177,24 @@ const initialState = {
 const datveReducer = (state = initialState, action) => {
   switch (action.type) {
     case "dang_chon": {
-
       //Kiếm index của hàng được chọn
       const indexHang = state.seatList.findIndex(
         (item) => item.hang === action.hang
       );
 
       //Tạo ra 1 mảng danhSachGhe mới có ghế được chọn dc thêm key dangChon là true
-      const danhSachGhe = state.seatList[indexHang].danhSachGhe.map(
-        (item) => {
-          if (item.soGhe === action.soGhe) {
+      const danhSachGhe = state.seatList[indexHang].danhSachGhe.map((item) => {
+        if (item.soGhe === action.soGhe) {
+          if (!item.dangChon) {
             return { ...item, dangChon: true };
+          } else {
+            return { ...item, dangChon: false };
           }
-          return item;
         }
-      );
+        return item;
+      });
 
-      //Tạo ra 1 mảng seatList mới có mảng danhSachGhe mới lấy dc từ bên trên 
+      //Tạo ra 1 mảng seatList mới có mảng danhSachGhe mới lấy dc từ bên trên
       const seatList = state.seatList.map((item) => {
         if (item.hang === action.hang) {
           return { ...item, danhSachGhe: danhSachGhe };
@@ -201,16 +202,49 @@ const datveReducer = (state = initialState, action) => {
         return item;
       });
 
-      //Tìm ghế đang được người dùng chọn 
-      const seat = state.seatList[indexHang].danhSachGhe.find((item) => {
+      //Tìm ghế đang được người dùng chọn
+      const seat = seatList[indexHang].danhSachGhe.find((item) => {
         return item.soGhe === action.soGhe;
-      })
+      });
 
       //Tạo ra 1 mảng seatSelected mới để thêm vào ghế người dùng đang chọn
-      const seatSelected = [...state.seatSelected, seat];
-     
-      
+      const seatSelected = [...state.seatSelected];
+
+      if (seat.dangChon) {
+        seatSelected.push(seat);
+      } else {
+        const index = state.seatSelected.findIndex(
+          (item) => item.soGhe === seat.soGhe
+        );
+        seatSelected.splice(index, 1);
+      }
+
       return { ...state, seatSelected, seatList };
+    }
+
+    case "da_chon": {
+      const seatSelected = [];
+
+      const newSeatList = [...state.seatList];
+
+      action.seatPurchaseds.map((item) => {
+        const hang = item.soGhe.slice(0, 1);
+        const indexHang = state.seatList.findIndex(
+          (item) => item.hang === hang
+        );
+        const danhSachGhe = state.seatList[indexHang].danhSachGhe.map((ghe) => {
+          if (ghe.soGhe === item.soGhe) {
+            return { ...ghe, daDat: true };
+          }
+          return ghe;
+        });
+
+        newSeatList[indexHang].danhSachGhe = danhSachGhe;
+      });
+
+      console.log(newSeatList);
+
+      return { ...state, seatSelected, newSeatList };
     }
 
     default:
